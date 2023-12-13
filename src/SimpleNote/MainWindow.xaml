@@ -17,5 +17,25 @@
     </WindowChrome.WindowChrome>
 
     <Grid>
+        <DockPanel LastChildFill="False">
+
+            <DockPanel x:Name="titleBar"
+                       DockPanel.Dock="Top"
+                       MouseDown="TitleBar_MouseDown">
+
+                <Button x:Name="closeButton"
+                        DockPanel.Dock="Right"
+                        Height="24"
+                        Click="CloseButton_Click">
+                    <Image Source="Resources/close.png"></Image>
+                </Button>
+
+                <TextBlock Text="Simple Note"
+                           VerticalAlignment="Center"
+                           FontSize="16" />
+            </DockPanel>
+
+            <Separator DockPanel.Dock="Top" Margin="0" />
+        </DockPanel>
     </Grid>
 </Window>
