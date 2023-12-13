@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleNote"
         mc:Ignorable="d"
+        WindowStyle="None"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
+    <!-- Remove title bar -->
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            CaptionHeight="0"
+            UseAeroCaptionButtons="False"
+            ResizeBorderThickness="5" />
+    </WindowChrome.WindowChrome>
+
+    <Grid>
     </Grid>
 </Window>
