@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         WindowStyle="None"
-        Title="MainWindow" Height="450" Width="800">
+        Background="#fff7cc"
+        MinHeight="50" MinWidth="140"
+        Height="360" Width="310">
 
     <!-- Remove title bar -->
     <WindowChrome.WindowChrome>
@@ -24,11 +26,14 @@
                 <Button x:Name="closeButton"
                         DockPanel.Dock="Right"
                         Height="24"
+                        BorderThickness="0"
+                        Background="#fff7cc"
                         Click="CloseButton_Click">
                     <Image Source="Resources/close.png"></Image>
                 </Button>
 
                 <TextBlock Text="Simple Note"
+                           Margin="5 0 0 0"
                            VerticalAlignment="Center"
                            FontSize="16" />
             </DockPanel>
