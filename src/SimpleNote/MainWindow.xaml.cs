@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace SimpleNote
@@ -18,6 +20,16 @@ namespace SimpleNote
             Height = xmlConfiguration.WindowHeight;
             Width = xmlConfiguration.WindowWidth;
             noteTextBox.Text = xmlConfiguration.NoteText;
+
+            var windowLoaded = Observable.FromEventPattern(this, nameof(this.Loaded));
+            Observable.FromEventPattern(this, nameof(this.LocationChanged))
+                .SkipUntil(windowLoaded)
+                .Throttle(TimeSpan.FromMilliseconds(800))
+                .Subscribe(x => Dispatcher.Invoke(() => SaveSettings()));
+
+            Observable.FromEventPattern(noteTextBox, nameof(noteTextBox.TextChanged))
+                .Throttle(TimeSpan.FromMilliseconds(800))
+                .Subscribe(x => Dispatcher.Invoke(() => SaveSettings()));
         }
 
         private void SaveSettings()
