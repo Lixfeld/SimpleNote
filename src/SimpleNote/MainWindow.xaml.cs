@@ -20,9 +20,10 @@ namespace SimpleNote
             noteTextBox.Text = xmlConfiguration.NoteText;
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void SaveSettings()
         {
-            Close();
+            XmlConfiguration xmlConfiguration = new XmlConfiguration(Top, Left, Height, Width, noteTextBox.Text);
+            xmlConfiguration.Save();
         }
 
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -31,6 +32,16 @@ namespace SimpleNote
             {
                 DragMove();
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SaveSettings();
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

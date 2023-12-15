@@ -6,6 +6,7 @@
         mc:Ignorable="d"
         WindowStyle="None"
         Background="#fff7cc"
+        Closing="Window_Closing"
         MinHeight="50" MinWidth="140"
         Height="360" Width="310">
 
