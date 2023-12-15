@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XmlConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<WindowTop>100</WindowTop>
+	<WindowLeft>100</WindowLeft>
+	<WindowHeight>360</WindowHeight>
+	<WindowWidth>310</WindowWidth>
+	<NoteText>Notes...</NoteText>
+</XmlConfiguration>
