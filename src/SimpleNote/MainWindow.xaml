@@ -17,7 +17,7 @@
     </WindowChrome.WindowChrome>
 
     <Grid>
-        <DockPanel LastChildFill="False">
+        <DockPanel>
 
             <DockPanel x:Name="titleBar"
                        DockPanel.Dock="Top"
@@ -39,6 +39,16 @@
             </DockPanel>
 
             <Separator DockPanel.Dock="Top" Margin="0" />
+
+            <TextBox x:Name="noteTextBox"
+                     DockPanel.Dock="Bottom"
+                     Margin="3 0"
+                     BorderThickness="0"
+                     FontSize="14"
+                     Block.LineHeight="2"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     Background="#fff7cc" />
         </DockPanel>
     </Grid>
 </Window>
