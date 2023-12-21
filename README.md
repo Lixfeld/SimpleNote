@@ -1,6 +1,8 @@
 # Simple Note
 Simple sticky note in WPF
 
+![Screenshot](https://raw.githubusercontent.com/Lixfeld/SimpleNote/main/screenshot.png) 
+
 ## Icons
 [Notes][0] from Papirus Development Team  
 [Close][1] from Muhammad Huda  
