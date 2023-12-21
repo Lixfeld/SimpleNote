@@ -21,12 +21,14 @@ namespace SimpleNote
             Width = xmlConfiguration.WindowWidth;
             noteTextBox.Text = xmlConfiguration.NoteText;
 
+            // Save last position
             var windowLoaded = Observable.FromEventPattern(this, nameof(this.Loaded));
             Observable.FromEventPattern(this, nameof(this.LocationChanged))
                 .SkipUntil(windowLoaded)
                 .Throttle(TimeSpan.FromMilliseconds(800))
                 .Subscribe(x => Dispatcher.Invoke(() => SaveSettings()));
 
+            // Save last text edit
             Observable.FromEventPattern(noteTextBox, nameof(noteTextBox.TextChanged))
                 .Throttle(TimeSpan.FromMilliseconds(800))
                 .Subscribe(x => Dispatcher.Invoke(() => SaveSettings()));
@@ -40,6 +42,7 @@ namespace SimpleNote
 
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            // Can only call DragMove when the primary mouse button is down
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 DragMove();
