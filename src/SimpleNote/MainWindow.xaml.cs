@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,6 +16,7 @@ namespace SimpleNote
         public MainWindow(XmlConfiguration xmlConfiguration)
         {
             InitializeComponent();
+            SynchronizationContext uiContext = SynchronizationContext.Current!;
 
             Top = xmlConfiguration.WindowTop;
             Left = xmlConfiguration.WindowLeft;
@@ -26,12 +29,14 @@ namespace SimpleNote
             Observable.FromEventPattern(this, nameof(this.LocationChanged))
                 .SkipUntil(windowLoaded)
                 .Throttle(TimeSpan.FromMilliseconds(800))
-                .Subscribe(x => Dispatcher.Invoke(() => SaveSettings()));
+                .ObserveOn(uiContext) // or .Subscribe(x => Dispatcher.Invoke(...))
+                .Subscribe(x => SaveSettings());
 
             // Save last text edit
             Observable.FromEventPattern(noteTextBox, nameof(noteTextBox.TextChanged))
                 .Throttle(TimeSpan.FromMilliseconds(800))
-                .Subscribe(x => Dispatcher.Invoke(() => SaveSettings()));
+                .ObserveOn(uiContext)
+                .Subscribe(x => SaveSettings());
         }
 
         private void SaveSettings()
